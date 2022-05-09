@@ -1,0 +1,23 @@
+{% extends 'inicio.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  danger
+</div>
+{% endif %}
+
+<h3>Agrear nuevo fondo</h3>
+<br>
+<form action="{% url 'guardar' %}" method="POST">
+  {% csrf_token %}
+  {% if mesaje %}
+  <div class="alert alert-success" role="alert">
+    exitoso
+  </div>
+  {% endif %}
+  {{ form|crispy }}
+  <br>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+{% endblock %}
