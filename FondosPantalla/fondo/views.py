@@ -17,7 +17,11 @@ class Fondo(HttpRequest):
             form = FormularioFondo(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
-                imagen = str(request.FILES.get('imagen'))
+
+                id = Fondos.objects.all().last().id
+                fondo = Fondos.objects.filter(id=id).first()
+                imagen = str(ntpath.basename(fondo.imagen.url))
+
                 ruta = "./imgs/preview/" + imagen
                 shutil.copy(ruta, "./imgs/download/" + imagen)
 
