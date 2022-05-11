@@ -1,0 +1,20 @@
+{% extends 'inicio.html' %}
+
+{% block content %}
+<form action="#" method="POST" enctype="multipart/form-data">
+
+<div id="container">
+    <a>Título: {{ titulo }}</a><br>
+    <img src="imgs/download/{{ imagen }}" width="500" height="500">
+</div>
+
+<div>
+     <a>Descripción: {{ descripcion }}</a><br>
+     <a>Precio: {{ precio }}</a><br><br>
+
+</div>
+<button type="submit" class="btn btn-primary">Descargar</button>
+    <a class="btn btn-dark" href="{% url 'listar' %}">Cancelar</a>
+</form>
+
+{% endblock %}
