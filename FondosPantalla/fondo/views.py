@@ -1,4 +1,5 @@
 import shutil
+
 from django.shortcuts import render
 from fondo.forms import FormularioFondo
 from django.http import HttpRequest
@@ -18,7 +19,6 @@ class Fondo(HttpRequest):
                 form.save()
                 imagen = str(request.FILES.get('imagen'))
                 ruta = "./imgs/preview/" + imagen
-                #shutil.copy(ruta, "./imgs/preview/" + imagen)
                 shutil.copy(ruta, "./imgs/download/" + imagen)
 
             return render(request, "nuevo_fondo.html", {"form": form, "mensaje": "ok"})
@@ -35,9 +35,9 @@ class Fondo(HttpRequest):
 
     def listar(request):
         form = Fondos.objects.all()
-
         return render(request, "principal.html", {"form": form, "nombre": "emoji.png"})
 
 
-
-
+    def descargar(request):
+        print("descargar!!!!!!!")
+        return render(request, "principal.html", {"form": ""})

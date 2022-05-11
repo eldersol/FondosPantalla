@@ -25,6 +25,7 @@ urlpatterns = [
     path('principal', Fondo.listar, name='listar'),
     path('nuevo', Fondo.inicio, name='nuevo'),
     path('guardar', Fondo.guardar, name='guardar'),
+    path('descargar', Fondo.descargar, name='descargar'),
     path('fondo/<int:id>', Fondo.ver_datos, name='fondo'),
 ]
 

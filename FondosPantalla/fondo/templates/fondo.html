@@ -1,8 +1,8 @@
 {% extends 'inicio.html' %}
 
 {% block content %}
-<form action="#" method="POST" enctype="multipart/form-data">
-
+<form action="{% url 'descargar' %}" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
 <div id="container">
     <a>Título: {{ titulo }}</a><br>
     <img src="../imgs/download/{{ imagen }}" width="1366" height="768">
