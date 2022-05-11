@@ -15,22 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from fondo.HomeView import HomeView
 from fondo.views import Fondo
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomeView.home, name='home'),
+    path('', Fondo.listar, name='home'),
+    path('principal', Fondo.listar, name='listar'),
     path('nuevo', Fondo.inicio, name='nuevo'),
     path('guardar', Fondo.guardar, name='guardar'),
+    path('fondo/<int:id>', Fondo.ver_datos, name='fondo'),
 ]
 
-
-
-
-
-
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 

@@ -1,0 +1,30 @@
+{% extends 'inicio.html' %}
+
+{% block content %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titulo</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Fondo</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for fondo in form %}
+  <tr>
+      <th scope="row"> {{ fondo.id }}</th>
+      <th scope="row"> {{ fondo.titulo }}</th>
+      <th scope="row"> {{ fondo.precio }}</th>
+    <td>
+      {% if fondo.imagen %}
+        <a href="{% url 'fondo' fondo.id %}">
+          <img src="imgs/{{ fondo.imagen.name }}" width="136" height="76">
+        </a>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

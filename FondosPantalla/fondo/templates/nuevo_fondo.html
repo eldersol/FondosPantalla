@@ -9,15 +9,16 @@
 
 <h3>Agrear nuevo fondo</h3>
 <br>
-<form action="{% url 'guardar' %}" method="POST">
+<form action="{% url 'guardar' %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
-  {% if mesaje %}
-  <div class="alert alert-success" role="alert">
-    exitoso
+  {% if mensaje %}
+  <div class="alert alert-success" role="alert" >
+    Fondo guardado
   </div>
   {% endif %}
   {{ form|crispy }}
   <br>
   <button type="submit" class="btn btn-primary">Guardar</button>
+  <a class="btn btn-dark" href="{% url 'listar' %}">Cancelar</a>
 </form>
 {% endblock %}
