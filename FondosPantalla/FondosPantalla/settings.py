@@ -79,14 +79,14 @@ WSGI_APPLICATION = 'FondosPantalla.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fondospantalla',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'HOST': '34.125.30.194',
-        'PASSWORD': 'password',
-        'DATABASE_PORT': 5432,
+        'HOST': 'db_postgres',
+        'PORT': 5432,
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
