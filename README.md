@@ -25,6 +25,10 @@ Criterios:
 11. Inicializar el repo público al iniciar el desarrollo para llevar tracking de tiempo de finalización.
 
 
+## El formato en el cual guardar las imágenes resultantes debe ser ".webp"
+
+
+
 ### Comandos utilizados:
 
 

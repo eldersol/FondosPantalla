@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 from django.shortcuts import render
 from fondo.forms import FormularioFondo
 from django.http import HttpRequest
@@ -29,6 +31,16 @@ class Fondo(HttpRequest):
                 download = original.resize((1366, 768))
                 download.save("./imgs/download/" + imagen)
 
+                #CONVERTIR A WEBP
+                dire, extencion = os.path.splitext(imagen)
+                for root, dirs, files in os.walk("./imgs/download/"):
+                    for file in files:
+                        if file.endswith(extencion):
+                            archivo = os.path.join(root, file)
+                            archivo_nuevo = archivo.replace(extencion, '.webp')
+                            ima = Image.open(archivo).convert("RGB")
+                            ima.save(archivo_nuevo, "webp")
+
             return render(request, "nuevo_fondo.html", {"form": form, "mensaje": "ok"})
         except Exception as e: print(e)
 
@@ -38,8 +50,9 @@ class Fondo(HttpRequest):
         descripcion = fondo.descripcion
         precio = fondo.precio
         imagen = str(ntpath.basename(fondo.imagen.url))
-
-        return render(request, "fondo.html", {"titulo": titulo, "imagen": imagen, "descripcion": descripcion, "precio": precio, "id": id})
+        nombre_imagen = Path(imagen).stem
+        nombre_imagen += ".webp"
+        return render(request, "fondo.html", {"titulo": titulo, "imagen": nombre_imagen, "descripcion": descripcion, "precio": precio, "id": id})
 
     def listar(request):
         form = Fondos.objects.all()
